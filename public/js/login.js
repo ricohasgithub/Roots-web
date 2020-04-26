@@ -1,4 +1,6 @@
 
+Radar.initialize("prj_live_pk_e26e9849721e36acebb7af3909c6985692c52e43");
+
 // Create a new event listener that checks for the submit function (enter key)
 document.onkeyup = function(e) {
 

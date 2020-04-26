@@ -61,7 +61,43 @@ document.getElementById("logout").onclick = () => {
 
 }
 
+// Community needs
+let communityNeeds = 0;
+
 Radar.initialize("prj_live_pk_e26e9849721e36acebb7af3909c6985692c52e43");
+
+document.getElementById("content").onclick  = () => {
+
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          var xhttpJSON = JSON.parse(this.responseText);
+          console.log(xhttpJSON);
+      }
+  };
+
+  xhttp.open("GET", "https://api.radar.io/v1/search/geofences?near="+userLat+","+userLong, true);
+  xhttp.setRequestHeader("Authorization","prj_live_pk_e26e9849721e36acebb7af3909c6985692c52e43");
+  xhttp.send();
+
+  var xhttpUsers = new XMLHttpRequest();
+
+  xhttpUsers.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          var xhttpUsersJSON = JSON.parse(this.responseText);
+          var usersInGeoFence = xhttpUsersJSON.users;
+          for (var i = 0; i < usersInGeoFence.length; i++) {
+            communityNeeds += usersInGeoFence[i].Requested;
+          }
+      }
+  };
+
+  xhttpUsers.open("GET", "https://api.radar.io/v1/geofences/:id/users", true);
+  xhttpUsers.setRequestHeader("Authorization","prj_live_sk_ad4fd76ab85ed0c100cd39fe0b42a9e939fac017");
+  xhttpUsers.send();
+
+}
 
 // Create the script tag, set the appropriate attributes
 var script = document.createElement("script");
@@ -74,12 +110,89 @@ var popup, Popup;
 // Attach your callback function to the `window` object
 window.initMap = function () {
 
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          var xhttpJSON = JSON.parse(this.responseText);
+          console.log(xhttpJSON);
+      }
+  };
+
+  xhttp.open("GET", "https://api.radar.io/v1/search/geofences?near="+userLat+","+userLong, true);
+  xhttp.setRequestHeader("Authorization","prj_live_pk_e26e9849721e36acebb7af3909c6985692c52e43");
+  xhttp.send();
+
+  var xhttpUsers = new XMLHttpRequest();
+
+  xhttpUsers.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          var xhttpUsersJSON = JSON.parse(this.responseText);
+          var usersInGeoFence = xhttpUsersJSON.users;
+          for (var i = 0; i < usersInGeoFence.length; i++) {
+            communityNeeds += usersInGeoFence[i].Requested;
+          }
+      }
+  };
+
+  xhttpUsers.open("GET", "https://api.radar.io/v1/geofences/:id/users", true);
+  xhttpUsers.setRequestHeader("Authorization","prj_live_sk_ad4fd76ab85ed0c100cd39fe0b42a9e939fac017");
+  xhttpUsers.send();
+
   let map = new google.maps.Map(document.getElementById("map"), {
       center: {lat: userLat, lng: userLong},
       zoom: 12
   });
 
-  document.getElementById("content").innerText = "You are here";
+
+  var titlenode = document.createElement("h6");
+  var titletextnode = document.createTextNode("Your Community");
+  titlenode.style.fontWeight = "600";
+  titlenode.style.marginLeft = "-7.5vw";
+  titlenode.style.marginTop = "1vh";
+  titlenode.appendChild(titletextnode);
+
+  document.getElementById("content-text-container").appendChild(titlenode);
+
+  var donationnode = document.createElement("p");
+  var donationtextnode = document.createTextNode("\nDonations Needed: $" + communityNeeds);
+  donationnode.style.marginLeft = "-8.75vw";
+  donationnode.appendChild(donationtextnode);
+
+  document.getElementById("content-text-container").appendChild(donationnode);
+
+  var ctx = document.getElementById('chart').getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Friday', 'Saturday', 'Today'],
+      datasets: [{
+        label: 'Donations',
+        data: [30, 20, 40],
+        backgroundColor: [
+          'rgba(99, 255, 132, 0.2)',
+          'rgba(99, 255, 132, 0.2)',
+          'rgba(99, 255, 132, 0.2)',
+        ],
+        borderColor: [
+          'rgba(99, 255, 132, 1)',
+          'rgba(99, 255, 132, 1)',
+          'rgba(99, 255, 132, 1)'
+        ],
+        borderWidth: 1,
+        barThickness: 35
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
 
   Popup = createPopupClass();
   popup = new Popup(
@@ -102,6 +215,10 @@ window.initMap = function () {
     fillColor: '#42f593',
     fillOpacity: 0.35
   });
+
+  userCommunity.onclick = () => {
+    consoel.log("Hi");
+  }
 
   userCommunity.setMap(map);
 
@@ -163,7 +280,6 @@ function createPopupClass() {
 
   return Popup;
 }
-
 
 // Append the 'script' element to 'head'
 document.head.appendChild(script);

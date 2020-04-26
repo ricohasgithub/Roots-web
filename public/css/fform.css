@@ -48,5 +48,5 @@ p {
 }
 
 html {
-  overflow: none;
+  overflow-x: none;
 }

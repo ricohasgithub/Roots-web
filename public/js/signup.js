@@ -21,6 +21,8 @@ function updateUserLoc (position) {
   console.log(userLong);
 }
 
+Radar.initialize("prj_live_pk_e26e9849721e36acebb7af3909c6985692c52e43");
+
 // Create a new event listener that checks for the submit function (enter key)
 document.onkeyup = function(e) {
 
@@ -44,6 +46,13 @@ document.onkeyup = function(e) {
     })
 
     let nusername = user.email.substring(0, user.email.indexOf("@"));
+
+    let imm_needs = document.querySelector("#needs").value;
+
+    Radar.setUserId(nusername);
+    Radar.setMetadata({
+      "Requested": imm_needs,
+    });
 
     // Create a new document for the current user
     let cUserDocument = db.collection("users").doc(nusername).set({
