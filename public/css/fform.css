@@ -1,0 +1,48 @@
+
+form {
+  position: absolute;
+  top: 12%;
+  left: 20%;
+  width: 50%;
+  padding: 5%;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+form:hover {
+  font-family: 'Lato', sans-serif;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+label {
+  font-family: 'Lato', sans-serif;
+  margin-right: 5%;
+}
+
+input[type=text] {
+  font-family: 'Lato', sans-serif;
+  width: 100%;
+  padding: 2% 3%;
+  margin: 3% 0%;
+  border: 1px solid #dedede;
+  box-sizing: border-box;
+}
+
+input[type=password] {
+  font-family: 'Lato', sans-serif;
+  width: 100%;
+  padding: 2% 3%;
+  margin: 3% 0%;
+  border: 1px solid #dedede;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-family: 'Lato', sans-serif;
+}
+
+p {
+  font-family: 'Lato', sans-serif;
+}
