@@ -79,16 +79,31 @@ window.initMap = function () {
       zoom: 12
   });
 
-  let marker = new google.maps.Marker({
-    position: {lat: userLat, lng: userLong},
-    map: map,
-    title: 'You are here'
-  });
+  document.getElementById("content").innerText = "You are here";
+
   Popup = createPopupClass();
   popup = new Popup(
       new google.maps.LatLng(userLat, userLong),
       document.getElementById('content'));
   popup.setMap(map);
+
+  var communityCoords = [
+          {lat: userLat - 0.005, lng: userLong - 0.01},
+          {lat: userLat + 0.0075, lng: userLong - 0.01},
+          {lat: userLat + 0.0075, lng: userLong + 0.01},
+          {lat: userLat - 0.005, lng: userLong + 0.01}
+        ];
+
+  var userCommunity = new google.maps.Polygon({
+    paths: communityCoords,
+    strokeColor: '#FF0000',
+    strokeOpacity: 0.8,
+    strokeWeight: 3,
+    fillColor: '#FF0000',
+    fillOpacity: 0.35
+  });
+
+  userCommunity.setMap(map);
 
 }
 

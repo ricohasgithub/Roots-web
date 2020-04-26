@@ -70,7 +70,8 @@
   transform: translate(-50%, -100%);
   /* Style the bubble. */
   background-color: white;
-  padding: 5px;
+  color: black;
+  padding: 2vh;
   border-radius: 5px;
   font-family: sans-serif;
   overflow-y: auto;
