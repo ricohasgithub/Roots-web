@@ -30,6 +30,19 @@
 
 }
 
+.navbar-button {
+
+  position: absolute;
+  left: 55vw;
+
+  margin-top: 0.75vh;
+  margin-left: 5vw;
+
+  font-size: 1.5vw;
+  font-weight: 400;
+
+}
+
 .home-title {
   position: absolute;
   margin-top: 10vh;
@@ -59,6 +72,23 @@
 
 #navbar-username {
   left: 52.5vw;
+}
+
+#signin-button {
+  color: white;
+  border: none;
+  padding-top: 2.5vh;
+  padding-bottom: 2.5vh;
+  padding-left: 3vh;
+  padding-right: 3vh;
+  border-radius: 15px;
+  background-color: #2C96FF;
+  transition: 0.3s;
+}
+
+#signin-button:hover {
+  color: white;
+  background-color: #2e2e2e;
 }
 
 #map {
