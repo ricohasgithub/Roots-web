@@ -74,6 +74,10 @@
   left: 52.5vw;
 }
 
+#logout {
+  left: 15vw;
+}
+
 #signin-button {
   color: white;
   border: none;

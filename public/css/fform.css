@@ -46,3 +46,7 @@ h1 {
 p {
   font-family: 'Lato', sans-serif;
 }
+
+html {
+  overflow: none;
+}

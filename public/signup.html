@@ -16,9 +16,10 @@
     <link href = "https://fonts.googleapis.com/css?family=Lato|Open+Sans&display=swap" rel = "stylesheet">
 
     <!-- Links to local scripts -->
+    <script defer type = "text/javascript" src = "./js/firebase-init.js"></script>
     <script defer src = "https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js"></script>
     <script defer src = "https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
-    <script defer type = "text/javascript" src = "./js/firebase-init.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
     <script defer type = "text/javascript" src = "./js/signup.js"></script>
 
     <title> Login </title>
@@ -35,6 +36,8 @@
       <input type = "text" id = "username" name = "username"/>
       <label for = "password">Password</label>
       <input type = "password" id = "password" name = "password"/>
+      <label for = "password">Stronghold Wallet ID</label>
+      <input type = "text" id = "wallet" name = "Stronghold Wallet"/>
     </form>
 
   </body>

@@ -1,4 +1,26 @@
 
+// Retrieve the cloud firestore object
+let db = firebase.firestore(app);
+
+let userGeoPoint;
+
+let userLat;
+let userLong;
+
+if (!navigator.geolocation) {
+  console.log("Geolocation API not supported by browser");
+} else {
+  navigator.geolocation.getCurrentPosition(updateUserLoc);
+}
+
+function updateUserLoc (position) {
+  userGeoPoint = position;
+  userLat = position.coords.latitude;
+  userLong = position.coords.longitude;
+  console.log(userLat);
+  console.log(userLong);
+}
+
 // Create a new event listener that checks for the submit function (enter key)
 document.onkeyup = function(e) {
 
@@ -8,6 +30,7 @@ document.onkeyup = function(e) {
     // Retrieve the email and password information off the index.html page
     let username = document.querySelector('#username').value;
     let password = document.querySelector('#password').value;
+    let walletid = document.querySelector('#wallet').value;
 
     e.preventDefault();
     e.stopPropagation();
@@ -19,6 +42,18 @@ document.onkeyup = function(e) {
       console.log(errorCode);
       console.log(errorMessage);
     })
+
+    let nusername = user.email.substring(0, user.email.indexOf("@"));
+
+    // Create a new document for the current user
+    let cUserDocument = db.collection("users").doc(nusername).set({
+      username: nusername,
+      location: {
+        lat: userLat,
+        lng: userLong
+      },
+      wallet: walletid,
+    });
 
   }
 
