@@ -1,6 +1,6 @@
 
 document.getElementById('signin-button').addEventListener('click', function() {
-   blockstack.redirectToSignIn("https://cocky-panini-0ad02c.netlify.app/community.html")
+   blockstack.redirectToSignIn()
 })
 
 function showProfile(profile) {

@@ -1,8 +1,4 @@
 {
-  "firestore": {
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
-  },
   "hosting": {
     "public": "public",
     "ignore": [
@@ -15,6 +11,28 @@
         "source": "**",
         "destination": "/index.html"
       }
-    ]
+    ],
+    "headers": [
+      {
+        "source" : "**/*.@(eot|json|otf|ttf|ttc|woff|font.css)",
+        "headers" : [
+          {
+            "key" : "Access-Control-Allow-Origin",
+            "value" : "*"
+          }
+        ]
+      },
+      {
+        "source" : "**/*.@(jpg|jpeg|gif|png)",
+        "headers" : [
+          {
+            "key" : "Cache-Control",
+            "value" : "max-age=7200"
+          }
+        ]
+      }
+    ],
+    "cleanUrls": true,
+    "trailingSlash": false
   }
 }
