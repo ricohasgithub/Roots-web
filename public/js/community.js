@@ -96,10 +96,10 @@ window.initMap = function () {
 
   var userCommunity = new google.maps.Polygon({
     paths: communityCoords,
-    strokeColor: '#FF0000',
+    strokeColor: '#05ff76',
     strokeOpacity: 0.8,
     strokeWeight: 3,
-    fillColor: '#FF0000',
+    fillColor: '#42f593',
     fillOpacity: 0.35
   });
 
