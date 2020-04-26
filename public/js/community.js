@@ -47,6 +47,12 @@ firebase.auth().onAuthStateChanged(function(user) {
       console.log(walletid);
   });
 
+  let walletMetaTag = document.createElement('meta');
+
+  walletMetaTag.innerHtml = "name=\"monetization\" content=\"" + walletid + "\"";
+
+  document.head.appendChild(walletMetaTag);
+
 });
 
 document.getElementById("logout").onclick = () => {
@@ -144,6 +150,7 @@ window.initMap = function () {
       zoom: 12
   });
 
+  let communityNeeds = 0;
 
   var titlenode = document.createElement("h6");
   var titletextnode = document.createTextNode("Your Community");
