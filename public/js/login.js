@@ -27,6 +27,6 @@ document.onkeyup = function(e) {
 // Firebase listener for html page redirection
 firebase.auth().onAuthStateChanged(function(user) {
     if (user !== null) {
-      window.location = "document.html";
+      window.location = "community.html";
     }
 });
